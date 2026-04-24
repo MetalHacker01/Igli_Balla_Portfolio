@@ -1,0 +1,290 @@
+/* =========================================================
+   Retro / cyberpunk scope. Applied via .retro-scope on root
+   inside the /retro layout so it never leaks into the editorial
+   version.
+   ========================================================= */
+
+.retro-scope {
+  --neon-primary: #ff00ff;
+  --neon-secondary: #00ffff;
+  --neon-accent: #39ff14;
+  --neon-hot: #ff1493;
+  --bg-void: #0a0a0a;
+  --bg-panel: #1a1a2e;
+  --bg-surface: #16213e;
+  --text-primary: #e0e0ff;
+  --text-muted: #8888aa;
+  --scanline-opacity: 0.05;
+  --pixel: 4px;
+
+  background: var(--bg-void);
+  color: var(--text-primary);
+  font-family: var(--font-vt323), monospace;
+  font-size: 18px;
+  line-height: 1.5;
+  -webkit-font-smoothing: none;
+  -moz-osx-font-smoothing: unset;
+  font-smooth: never;
+  text-rendering: optimizeSpeed;
+}
+
+/* Pixel images: crisp, integer-scaled */
+.retro-scope .pixel-img {
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Fixed CRT scanline overlay */
+.retro-scope::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 0, 0, 0.35) 3px,
+    rgba(0, 0, 0, 0.35) 4px
+  );
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+}
+
+/* Subtle vignette + flicker */
+.retro-scope::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 91;
+  pointer-events: none;
+  background: radial-gradient(
+    ellipse at center,
+    transparent 55%,
+    rgba(0, 0, 0, 0.6) 100%
+  );
+  animation: flicker 6s infinite steps(3);
+}
+
+@keyframes flicker {
+  0%, 96%, 100% { opacity: 1; }
+  97%           { opacity: 0.92; }
+  98%           { opacity: 1; }
+  99%           { opacity: 0.95; }
+}
+
+/* =========================================================
+   Typography helpers
+   ========================================================= */
+
+.retro-scope .font-pixel {
+  font-family: var(--font-press-start), monospace;
+  letter-spacing: 0.02em;
+}
+.retro-scope .font-terminal {
+  font-family: var(--font-vt323), monospace;
+}
+.retro-scope .font-silk {
+  font-family: var(--font-silkscreen), monospace;
+  letter-spacing: 0.08em;
+}
+
+.retro-scope .neon-primary {
+  color: var(--neon-primary);
+  text-shadow:
+    0 0 6px rgba(255, 0, 255, 0.9),
+    0 0 14px rgba(255, 0, 255, 0.55);
+}
+.retro-scope .neon-secondary {
+  color: var(--neon-secondary);
+  text-shadow:
+    0 0 6px rgba(0, 255, 255, 0.9),
+    0 0 14px rgba(0, 255, 255, 0.55);
+}
+.retro-scope .neon-accent {
+  color: var(--neon-accent);
+  text-shadow:
+    0 0 6px rgba(57, 255, 20, 0.9),
+    0 0 14px rgba(57, 255, 20, 0.5);
+}
+.retro-scope .neon-hot {
+  color: var(--neon-hot);
+  text-shadow:
+    0 0 6px rgba(255, 20, 147, 0.9),
+    0 0 14px rgba(255, 20, 147, 0.55);
+}
+
+.retro-scope .chromatic {
+  text-shadow:
+    1px 0 0 rgba(255, 0, 60, 0.75),
+    -1px 0 0 rgba(0, 255, 255, 0.75);
+}
+
+/* =========================================================
+   Pixel borders (double-pixel sharp)
+   ========================================================= */
+
+.retro-scope .pixel-frame {
+  position: relative;
+  box-shadow:
+    0 0 0 2px var(--bg-void),
+    0 0 0 4px currentColor;
+}
+
+.retro-scope .pixel-frame-cyan  { color: var(--neon-secondary); }
+.retro-scope .pixel-frame-mag   { color: var(--neon-primary); }
+.retro-scope .pixel-frame-green { color: var(--neon-accent); }
+.retro-scope .pixel-frame-muted { color: var(--text-muted); }
+
+/* Corner ticks decoration */
+.retro-scope .corner-ticks::before,
+.retro-scope .corner-ticks::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  border-color: currentColor;
+  border-style: solid;
+  pointer-events: none;
+}
+.retro-scope .corner-ticks::before {
+  top: -6px;
+  left: -6px;
+  border-width: 2px 0 0 2px;
+}
+.retro-scope .corner-ticks::after {
+  bottom: -6px;
+  right: -6px;
+  border-width: 0 2px 2px 0;
+}
+
+/* =========================================================
+   Buttons
+   ========================================================= */
+
+.retro-scope .btn-pixel {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  background: var(--bg-panel);
+  color: var(--neon-secondary);
+  font-family: var(--font-press-start), monospace;
+  font-size: 11px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border: 0;
+  box-shadow:
+    0 0 0 2px var(--neon-secondary),
+    0 0 20px rgba(0, 255, 255, 0.35);
+  cursor: pointer;
+  transition: transform 0.1s steps(2), color 0.15s, box-shadow 0.15s;
+}
+.retro-scope .btn-pixel:hover {
+  color: var(--neon-primary);
+  box-shadow:
+    0 0 0 2px var(--neon-primary),
+    0 0 24px rgba(255, 0, 255, 0.5);
+}
+.retro-scope .btn-pixel:active {
+  transform: translate(2px, 2px);
+  box-shadow:
+    0 0 0 2px var(--neon-primary),
+    0 0 12px rgba(255, 0, 255, 0.3);
+}
+
+/* =========================================================
+   Blinking cursor
+   ========================================================= */
+
+.retro-scope .cursor-blink {
+  display: inline-block;
+  width: 0.6ch;
+  background: currentColor;
+  animation: blink 1s steps(2) infinite;
+  margin-left: 4px;
+}
+@keyframes blink {
+  0%, 49% { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
+/* =========================================================
+   Marquee
+   ========================================================= */
+
+@keyframes marquee-retro {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.retro-scope .marquee-retro {
+  animation: marquee-retro 30s linear infinite;
+}
+
+/* =========================================================
+   Sprite scanline on image
+   ========================================================= */
+
+.retro-scope .sprite-tile {
+  position: relative;
+  background: var(--bg-panel);
+  overflow: hidden;
+}
+.retro-scope .sprite-tile::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent 0,
+    transparent 2px,
+    rgba(255, 0, 255, 0.04) 2px,
+    rgba(0, 255, 255, 0.04) 4px
+  );
+  mix-blend-mode: overlay;
+}
+
+/* =========================================================
+   Focus ring
+   ========================================================= */
+
+.retro-scope :focus-visible {
+  outline: 2px solid var(--neon-secondary);
+  outline-offset: 3px;
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.6);
+}
+
+/* =========================================================
+   Selection
+   ========================================================= */
+
+.retro-scope ::selection {
+  background: var(--neon-primary);
+  color: var(--bg-void);
+}
+
+/* =========================================================
+   Reduced motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .retro-scope::after,
+  .retro-scope .cursor-blink,
+  .retro-scope .marquee-retro {
+    animation: none;
+  }
+}
+
+/* =========================================================
+   Utility: subtle HUD grid background
+   ========================================================= */
+
+.retro-scope .hud-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
