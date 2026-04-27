@@ -45,15 +45,15 @@ export default function Hero() {
           >
             <figure className="relative aspect-[4/5] overflow-hidden bg-paper-2">
               <Image
-                src="/work/te-lako/10.png"
-                alt="Te Lako menu layout: warm cream background with typographic menu sections."
+                src="/work/illustrator/PageHero.jpeg"
+                alt="Selected illustrator piece: vector composition on a warm field."
                 fill
                 sizes="(min-width: 768px) 28vw, 100vw"
                 priority
                 className="object-cover"
               />
               <figcaption className="absolute bottom-3 left-3 right-3 flex items-center justify-between font-mono text-[10px] uppercase tracking-[0.22em] text-ink-2">
-                <span>From Te Lako, 2025</span>
+                <span>From Illustrator set, 2025</span>
                 <span>01</span>
               </figcaption>
             </figure>

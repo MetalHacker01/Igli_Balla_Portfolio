@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { ArrowUpRight } from "@phosphor-icons/react/dist/ssr";
 
-type Thumb = { src: string; alt: string };
+type Thumb = { src: string; alt: string; objectPosition?: string };
 
 type Project = {
   id: string;
@@ -39,10 +39,14 @@ const projects: Project[] = [
     heroRatio: "aspect-[4/5]",
     heroObjectFit: "cover",
     thumbs: [
-      { src: "/work/te-lako/10.png", alt: "Te Lako menu layout on cream." },
-      { src: "/work/te-lako/03.png", alt: "Te Lako burger badge logo." },
-      { src: "/work/te-lako/07.png", alt: "Te Lako warm-toned menu grid." },
-      { src: "/work/te-lako/02.png", alt: "Te Lako grilled food banner." },
+      {
+        src: "/work/te-lako/02.png",
+        alt: "Te Lako grilled food banner.",
+        objectPosition: "left center",
+      },
+      { src: "/work/te-lako/01.png", alt: "Te Lako Wolt burger campaign." },
+      { src: "/work/te-lako/06.png", alt: "Te Lako delivery promo poster." },
+      { src: "/work/te-lako/08.png", alt: "Te Lako Hearty and Saucy poster." },
     ],
     thumbObjectFit: "cover",
   },
@@ -61,7 +65,7 @@ const projects: Project[] = [
       "CloudPage Maestro final logo mark: white circuit illustration inside a circular frame.",
     heroRatio: "aspect-square",
     heroObjectFit: "contain",
-    heroBg: "bg-ink",
+    heroBg: "bg-ink-2",
     thumbs: [],
     thumbObjectFit: "cover",
   },
@@ -75,13 +79,13 @@ const projects: Project[] = [
     year: "2025",
     href: "https://www.behance.net/gallery/248179561/3D-projects",
     piecesLabel: "6 pieces in the full set",
-    hero: "/work/threed/02.png",
-    heroAlt: "Rose-gold business card mock-up rendered in Blender.",
+    hero: "/work/threed/01.png",
+    heroAlt: "Energy drink cans, product line-up rendered in Blender.",
     heroRatio: "aspect-[4/3]",
     heroObjectFit: "cover",
     thumbs: [
       { src: "/work/threed/03.png", alt: "Figures climbing a stone path." },
-      { src: "/work/threed/01.png", alt: "Energy drink cans, product line-up." },
+      { src: "/work/threed/02.png", alt: "Rose-gold business card mock-up." },
       { src: "/work/threed/04.png", alt: "Character render study." },
       { src: "/work/threed/06.png", alt: "Stylized character scene." },
     ],
@@ -97,9 +101,8 @@ const projects: Project[] = [
     year: "2024 to 2025",
     href: "https://www.behance.net/gallery/248164411/Adobe-illustrator-projects",
     piecesLabel: "16 pieces in the full set",
-    hero: "/work/illustrator/08.png",
-    heroAlt:
-      "Jumping Vintage logo: green record illustration on a cream field.",
+    hero: "/work/illustrator/09.png",
+    heroAlt: "Featured Illustrator piece: vector composition.",
     heroRatio: "aspect-square",
     heroObjectFit: "cover",
     thumbs: [
@@ -109,7 +112,7 @@ const projects: Project[] = [
       },
       { src: "/work/illustrator/03.png", alt: "Ho's Bunch bottle emblem." },
       { src: "/work/illustrator/04.png", alt: "Center Doze indie games seal." },
-      { src: "/work/illustrator/05.png", alt: "Vanguard metallic wordmark." },
+      { src: "/work/illustrator/10.png", alt: "Illustrator vector study." },
     ],
     thumbObjectFit: "cover",
   },
@@ -123,9 +126,8 @@ const projects: Project[] = [
     year: "2024 to 2025",
     href: "https://www.behance.net/gallery/248168941/Photoshop-projects",
     piecesLabel: "39 pieces in the full set",
-    hero: "/work/photoshop/03.png",
-    heroAlt:
-      "Ramen poster: warm noodle bowl on a cream background with a rising-sun pattern.",
+    hero: "/work/photoshop/01.png",
+    heroAlt: "Featured Photoshop composition: surreal figure in painted sky.",
     heroRatio: "aspect-[4/5]",
     heroObjectFit: "cover",
     thumbs: [
@@ -133,7 +135,7 @@ const projects: Project[] = [
         src: "/work/photoshop/07.png",
         alt: "Camera lens framing a golden railway.",
       },
-      { src: "/work/photoshop/01.png", alt: "Surreal figure in painted sky." },
+      { src: "/work/photoshop/03.png", alt: "Ramen poster, rising-sun pattern." },
       { src: "/work/photoshop/08.png", alt: "Friday the 13th poster." },
       {
         src: "/work/photoshop/02.png",
@@ -260,6 +262,7 @@ function ProjectBlock({ p, index }: { p: Project; index: number }) {
                   alt={t.alt}
                   fill
                   sizes="(min-width: 768px) 18vw, 25vw"
+                  style={t.objectPosition ? { objectPosition: t.objectPosition } : undefined}
                   className={`${
                     p.thumbObjectFit === "contain"
                       ? "object-contain p-4"
