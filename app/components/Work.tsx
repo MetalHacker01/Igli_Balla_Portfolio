@@ -39,11 +39,7 @@ const projects: Project[] = [
     heroRatio: "aspect-[4/5]",
     heroObjectFit: "cover",
     thumbs: [
-      {
-        src: "/work/te-lako/02.png",
-        alt: "Te Lako grilled food banner.",
-        objectPosition: "left center",
-      },
+      { src: "/work/te-lako/05.png", alt: "Te Lako sandwich on a plate, cafe scene." },
       { src: "/work/te-lako/01.png", alt: "Te Lako Wolt burger campaign." },
       { src: "/work/te-lako/06.png", alt: "Te Lako delivery promo poster." },
       { src: "/work/te-lako/08.png", alt: "Te Lako Hearty and Saucy poster." },
@@ -101,8 +97,8 @@ const projects: Project[] = [
     year: "2024 to 2025",
     href: "https://www.behance.net/gallery/248164411/Adobe-illustrator-projects",
     piecesLabel: "16 pieces in the full set",
-    hero: "/work/illustrator/09.png",
-    heroAlt: "Featured Illustrator piece: vector composition.",
+    hero: "/work/illustrator/01.png",
+    heroAlt: "Blue Realsy: circle wave-and-sun emblem with retro wordmark.",
     heroRatio: "aspect-square",
     heroObjectFit: "cover",
     thumbs: [
